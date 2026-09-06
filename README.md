@@ -58,6 +58,9 @@ ls -a|--all                                  # List directories including hidden
 ls -l                                        # List directories in long form
 ls -l -h|--human-readable                    # List directories in long form with human readable sizes
 ls -t                                        # List directories by modification time, newest first
+ls -S (capital letter)                       # List directories by Size
+ls -r | --reverse                            # list the reverse orders
+ls -lhSr                                     # list long-format & human readable & sort size && reverse
 ls -lR /Directory (& or 2)> lsfile 			     # Lists all files recursively in a directory and saves the output to a file named "lsfile". Any errors that occur during the process will also be saved to the same file.
 ls -lR /Directory | tee Filename | less      # Lists all files recursively in a directory, saves the output to a file named "Filename", and displays the output in the pager "less".
 stat filename.txt                            # List size, created and modified timestamps for a file
@@ -108,6 +111,7 @@ rsync -avz username@hostname:/file /directory                  # Copy remote dir
 rmdir directoryname                        # Delete empty directory
 rm -r|--recursive directoryname            # Delete directory including contents
 rm -r|--recursive -f|--force directoryname # Delete directory including contents, ignore nonexistent files and never prompt
+rm -rf directroyname                       # force to Delete directory 
 ```
 --------------------------------------------------------------------------------------------------
 </p>
