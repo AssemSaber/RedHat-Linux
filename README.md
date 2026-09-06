@@ -151,9 +151,10 @@ rm -f|--force filename.txt # Delete file, ignore nonexistent files and never pro
 ```bash
 file                   # Determine file type
 cat filename.txt       # Print all contents
-more                   # view the contents of a file one page at a time.
+more or less           # view the contents of a file one page at a time. 
 less filename.txt      # Print some contents at a time (g - go to top of file, SHIFT+g, go to bottom of file)
-head filename.txt      # Print top 10 lines of file
+head filename.txt      # Print top 10 lines of file ( by default )
+head -n 20 file.txt    # Print top 20 lines of file if you specify
 tail filename.txt      # Print bottom 10 lines of file
 open filename.txt      # Open file in the default editor
 wc filename.txt        # List number of lines words and characters in the file
