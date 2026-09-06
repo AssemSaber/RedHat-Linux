@@ -156,6 +156,7 @@ less filename.txt      # Print some contents at a time (g - go to top of file, S
 head filename.txt      # Print top 10 lines of file ( by default )
 head -n 20 file.txt    # Print top 20 lines of file if you specify
 tail filename.txt      # Print bottom 10 lines of file
+tail -f app.log        # continuously watch new lines (great for logs)
 open filename.txt      # Open file in the default editor
 wc filename.txt        # List number of lines words and characters in the file
 wc -l /etc/passwd/ 	  # all users
