@@ -165,12 +165,22 @@ wc -l /etc/passwd/ 	  # all users
 ## Standard Output, Standard Error and Standard Input
 
 ```bash
+>                             # Overwrite
+>>                            # Append
 echo "Words" > filename.txt   # Overwrite file with content
 echo "Words" >> filename.txt  # Append to file with content
+1 means standard output
+2 means standard error
+The role is :
+command standard output or error >> or > filename
 
-ls exists 1> filename.txt     # Redirect the standard output to a file
-ls noexist 2> filename.txt    # Rdirect the standard error output to a file
+ls exists 1> filename.txt     # Redirect the standard output with overwrite to a file
+ls exists 1>> filename.txt    # Redirect the standard output with append to a file
+ls noexist 2> filename.txt    # Redirect the standard error with overwrite output to a file
+s noexist 2>> filename.txt    # Redirect the standard error output with append to a file
 ls 2>&1 filename.txt          # Redirect standard output and error to a file
+  OR 
+command &> file                # Redirect standard output and error to a file
 ls > /dev/null                # Discard standard output and error
 ```
 --------------------------------------------------------------------------------------------------
@@ -190,18 +200,23 @@ type wget                   # Find the binary
 which wget                  # Find the binary
 whereis wget                # Find the binary, source, and manual page files
 ```
+```
+Locate and find search for files
+grep search patterns in files
+```
 
-`locate` uses an index and is fast.
+`locate` uses an index, which is stored in the db, and is fast.
 
 ```bash
-updatedb                     # Update the index
+- it is updated each 24 hours
+updatedb                     # Update manually the index 
 
 locate filename.txt          # Find a file
 locate --ignore-case         # Find a file and ignore case
 locate f*.txt                # Find a text file starting with 'f'
 ```
 
-`find` doesn't use an index and is slow.
+`find` doesn't use an index and is slow as it is brute force, however it provides more options.
 
 ```bash
 find /path -name filename.txt                # Find a file
@@ -223,6 +238,8 @@ find /path -type f -mtime +30 -delete        # Delete files that haven't been mo
 ## Find in Files
 
 ```bash
+grep search with patterns
+
 grep 'foo' /filename.txt                          # Search for 'foo' in file 'filename.txt'
 grep 'foo' /directory -r|--recursive              # Search for 'foo' in directory 
 grep 'foo' /directory -R|--dereference-recursive  # Search for 'foo' in directory and follow symbolic links
