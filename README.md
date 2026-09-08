@@ -475,8 +475,50 @@ sleep 30 &             # Sleep for 30 seconds and move the process into the back
 jobs                   # List all background jobs
 jobs -p                # List all background jobs with their PID
 
+ss -tuln               # Seeing the network ports
+# t >> tcp
+# u >> udp
+# l >> listing
+# n >> numeric address instead of alias
+
+
+
 lsof                   # List all open files and the process using them
 lsof -itcp:4000        # Return the process listening on port 4000
+
+```
+## what's happening on the network?? it will display all ports  
+
+`` 
+ss -tuln 
+``
+
+| # | Netid | State | Recv-Q | Send-Q | Local Address:Port | Peer Address:Port |
+| - | - | - | - | - | - | - |
+| 1 | tcp | LISTEN | 0 | 0 | 0.0.0.0:22 | 0.0.0.0:* |
+| 2 | tcp | ESTAB | 0 | 0 | 0.0.0.0:80 | 0.0.0.0:* |
+| 3 | tcp | LISTEN | 0 | 0 | 127.0.0.1:3306 | 0.0.0.0:* |
+| 4 | tcp | LISTEN | 0 | 0 | 0.0.0.0:443 | 0.0.0.0:* |
+| 5 | tcp6 | LISTEN | 0 | 0 | :::22 | :::* |
+| 6 | udp | UNCONN | 0 | 0 | 0.0.0.0:53 | 0.0.0.0:* |
+| 7 | udp | UNCONN | 0 | 0 | 0.0.0.0:68 | 0.0.0.0:* |
+
+
+
+- State: Indicates the current status of the socket, such as LISTEN (waiting for connections) or ESTABLISHED (active communication between systems)
+- Recv-Q / Send-Q: Shows the amount of data queued for receiving or sending, which helps identify delays or bottlenecks in communication
+- Local Address:Port: Displays the IP address and port number on your system where the socket is created or listening for connections
+- Peer Address:Port - Represents the remote system’s IP address and port number connected to your machine
+- Protocol Type: Specifies the communication protocol used by the socket, such as TCP (connection-oriented) or UDP (connectionless)
+- Tcp is listen state for a device or server to make connection
+- Tcp is ESTAB state as it has connection with device
+- Udp is unknown as it is connectionless  
+
+
+## which process has this port?
+
+```
+lsof -itcp:4000
 ```
 
 ## Process Priority
