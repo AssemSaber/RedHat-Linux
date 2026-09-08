@@ -150,8 +150,9 @@ rm -f|--force filename.txt # Delete file, ignore nonexistent files and never pro
 
 ```bash
 file                   # Determine file type
-cat filename.txt       # Print all contents
-more or less           # view the contents of a file one page at a time. 
+cat filename.txt       # Displays the entire file.
+more                   # Displays one page at a time (forward only).
+less                   # Displays one page at a time (forward and backward).
 less filename.txt      # Print some contents at a time (g - go to top of file, SHIFT+g, go to bottom of file)
 head filename.txt      # Print top 10 lines of file ( by default )
 head -n 20 file.txt    # Print top 20 lines of file if you specify
@@ -161,6 +162,7 @@ open filename.txt      # Open file in the default editor
 wc filename.txt        # List number of lines words and characters in the file
 wc -l /etc/passwd/ 	  # all users
 ```
+
 --------------------------------------------------------------------------------------------------
 ## Standard Output, Standard Error and Standard Input
 
@@ -911,3 +913,66 @@ esac
 
 </p>
 </details>  
+
+
+<details><summary>TECHNICAL QEUSTIONS INTERVIEW</summary><p>
+  
+--------------------------------------------------------------------------------------------------
+## How do you check disk usage?
+```
+df -h
+du -sh /home/user
+```
+
+## How do you check memory usage?
+
+```
+free -h
+```
+## How do you check the IP address and network interfaces on a Linux system?
+```
+ip addr
+```
+
+## What is the difference between a user and a group?
+- A user is an individual account used to log in to the system.
+- A group is a collection of users used to simplify permission management.
+
+## What is the difference between chmod and chown?
+- chmod: Changes file or directory permissions.
+- chown: Changes the owner and/or group of a file or directory.
+
+```
+chmod 755 file.txt # change persmission on file
+## you must have the groups or users used in chown
+chown new_user:new_group file.txt # change user and group
+chown new_user file.txt # change user on the file
+chown :new_group file.txt # change group name on the file
+```
+
+## What do the permissions rwxr-xr-- mean?
+The permission string is divided into three sets:
+
+- Owner: rwx(Read, Write, Execute).
+- Group: r-x(Read, Execute).
+- Others: r--(Read only).
+
+## Identify the Firefox PID
+```
+ps aux | grep firefox
+```
+
+## What is the difference between /etc/passwd and /etc/shadow?
+- /etc/passwd: Stores user account information.
+- /etc/shadow: Stores encrypted passwords Accessible only by the root user.
+
+## Full link in geeksforgeeks
+```
+https://www.geeksforgeeks.org/linux-unix/linux-interview-questions/
+```
+
+</p>
+</details>  
+
+
+
