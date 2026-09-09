@@ -149,7 +149,8 @@ rm -f|--force filename.txt # Delete file, ignore nonexistent files and never pro
 ## Reading Files
 
 ```bash
-file                   # Determine file type
+file name              # Determine file type (regular, symbolic, ASCII text(hardlink), or directory
+stat name
 cat filename.txt       # Displays the entire file.
 more                   # Displays one page at a time (forward only).
 less                   # Displays one page at a time (forward and backward).
@@ -162,7 +163,76 @@ open filename.txt      # Open file in the default editor
 wc filename.txt        # List number of lines words and characters in the file
 wc -l /etc/passwd/ 	  # all users
 ```
+## Softlinks vs Hardlinks
+##### create sample of tests
+```
+mkdir source target
+```
+```
+touch source/file1
+```
+```
+touch source/file2
+```
+```
+echo 'hello!'> source/file1
+```
+```
+echo 'hello!'> source/file2
+```
+## create the soft link.
+```
+ln -s ../source/file1 softlink
+```
+-  run ls -la, it will starts with l (symbolic)
+-  create another soft link
+```
+ln -s source/file1 softlink2
+```
+- execute the following commands
+```
+echo 'change to origin' >> source/file1
+```
 
+```
+echo 'change to softlink' >> softlink
+```
+
+```
+echo 'change to softlink' >> softlink2
+```
+- all files see the same changes
+```
+Yes, all changes are in the file.
+```
+- Let's use the commands we learned last time.
+```
+file softlink
+```
+- it returns that softlink: symbolic link to ./source/file1
+-  removing the softline and calling the softlink, it returna  `No such file or directory`
+  
+## create the hard link.
+```
+ln source/file2 hardlink
+```
+- to know the stat of file 
+```
+file hardlink or stat hardlink
+```
+- Run the following commands to test
+```
+echo 'this is added to original file' >> source/file2
+```
+```
+echo 'this is added to hard link' >> hardlink
+```
+```
+cat hardlink
+```
+```
+cat source/file2
+```
 --------------------------------------------------------------------------------------------------
 ## Standard Output, Standard Error and Standard Input
 
@@ -183,7 +253,7 @@ s noexist 2>> filename.txt    # Redirect the standard error output with append t
 ls 2>&1 filename.txt          # Redirect standard output and error to a file
   OR 
 command &> file                # Redirect standard output and error to a file
-ls > /dev/null                # Discard standard output and error
+grep pattern 2> /dev/null       # Discard standard output and error
 ```
 --------------------------------------------------------------------------------------------------
 
