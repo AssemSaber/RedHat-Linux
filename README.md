@@ -410,6 +410,57 @@ gunzip -k|--keep Cfilename.gz # Unzip Cfilename.gz into current directory
 <details><summary>User Administration</summary>
 <p>
 
+## Working with user
+` User Accounts`
+```
+/etc/passwd
+````
+it returns: `username:password:UID:GID:description:homedir:shell`
+
+`encrypted users' passwords` 
+```
+ /etc/shadow
+```
+`information about groups`
+```
+/etc/group 
+```
+- it returns > groupname:password:GID:assignedusers
+  
+` create users `
+- using adduser or useradd
+- adduser is a Perl script, which uses useradd in its backend. Another words, adduser uses useradd when creates user.
+```
+adduser username
+```
+- it asks you in the interactive shell about password and additional info
+```
+useradd -p password -m username
+```
+- from its name that ends ADD, you should add paramters
+- -p (password)
+- -m ( to create home dir)
+-  but it writes NOT encrpted password as intial value  in /etc/shadow, so you should retype the pass
+```
+passwd username
+```
+- it changes the password for a user
+## Working with Groups
+
+```
+cat /etc/group
+```
+- seeing all groups groupname:password:GID:assignedusers
+` There are two types of groups: primary and secondary`
+- **(primary group):** 
+- every user has been created has their own group 
+- you could assign other users to that group
+- **(secondary group):**
+- when the user assigned to another group
+```
+cat /etc/group
+```
+
 ## User and Group Management
 `User Management`
 ```bash
