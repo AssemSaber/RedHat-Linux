@@ -412,6 +412,7 @@ gunzip -k|--keep Cfilename.gz # Unzip Cfilename.gz into current directory
 
 ## Working with user
 ` User Accounts`
+- useradd && userdel && usermod
 ```
 /etc/passwd
 ````
@@ -445,12 +446,51 @@ useradd -p password -m username
 passwd username
 ```
 - it changes the password for a user
+```
+userdel username
+```
+- deletes the user
+```
+usermod -aG group username
+```
+- assign user to group
+```
+useradd -p 123 -m assem         # create new user.. this primary group called assem
+passwd assem                    # change initial passwd with encrypted one
+groupadd backend                # create new group with any name
+usermod -aG backend assem # add user to group(s) # assem has secondary group called backend 
+touch logs
+ls -l
+-rw-r--r-- 1 ubuntu ubuntu 0 Sep 10 18:00 file.txt  # that is long format
+sudo chown :backend logs # changes the group owner
+sudo chown khaled: logs # changes the user owner
+sudo chown khaled:backend logs # changes the user owner and group owner
+
+read write  execute
+-     -     -
+4     2     1
+  
+-rw- r-- r--
+user group others
+or
+Owner
+
+sudo chmod 127 logs
+ls -l
+d------x-w-rwx logs
+```
+- the whole actions occured in their ordered
+
 ## Working with Groups
 
 ```
 cat /etc/group
 ```
 - seeing all groups groupname:password:GID:assignedusers
+```
+groups
+```
+- to get groups too.
 ` There are two types of groups: primary and secondary`
 - **(primary group):** 
 - every user has been created has their own group 
@@ -460,6 +500,7 @@ cat /etc/group
 ```
 cat /etc/group
 ```
+
 
 ## User and Group Management
 `User Management`
