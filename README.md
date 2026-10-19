@@ -648,7 +648,9 @@ ss -tuln               # Seeing the network ports
 
 
 lsof                   # List all open files and the process using them
-lsof -itcp:4000        # Return the process listening on port 4000
+lsof -i: 4000        # Return the process listening on port 4000
+
+
 
 ```
 ## what's happening on the network?? it will display all ports  
@@ -682,7 +684,7 @@ ss -tuln
 ## which process has this port?
 
 ```
-lsof -itcp:4000
+lsof -i:4000
 ```
 
 ## Process Priority
