@@ -1211,4 +1211,71 @@ https://www.geeksforgeeks.org/linux-unix/linux-interview-questions/
 </details>  
 
 
+<details><summary>Big Data Cluster installation</summary><p>
+ ```bash
+# Show the current hostname
+hostname
+# worker1
+
+#### Rename the hostname to worker1
+
+```
+hostnamectl set-hostname worker1
+```
+
+#### Ping command is to check the current machine connected with that new hostname
+```
+ping worker1
+```
+
+#### Mapping the hostname with the IP address because we don't have DNS and to say to the VM "look up the name and get IP addr"
+
+```
+vi /etc/hosts
+```
+#### On VM worker1 to check it can reach master
+```
+ping master
+```
+#### On VM master to check it can reach worker1
+
+```
+ping worker1
+```
+
+#### Whichever user runs the Hadoop daemons must be able to SSH to every node without a password, and I chose hadoop as that user.
+
+#### Create hadoop user on both machines
+```
+useradd -m -s /bin/bash hadoop
+```
+
+#### Change the password / create hadoop's password
+```
+passwd hadoop
+```
+
+#### On master machine to make public and private key to run all scripts by him using SSH connecting to the machines
+```
+su - hadoop
+```
+#### Generate public and private key
+```
+ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
+```
+#### Copy from the public key, which is hadoop user on the master, to hadoop user inside master node (hostname).
+#### We make SSH on the same node to avoid writing password in the script.
+#### Logging in hadoop user inside master (you created in hostfiles as mapping name to IP) so the first time, it asks you about the password for hadoop user inside master.
+```
+ssh-copy-id hadoop@master
+```
+#### Copy from the public key, which is hadoop user on the master, to hadoop user inside worker1 node (hostname).
+#### We make SSH on the different node to avoid writing password in the script.
+#### Logging in hadoop user inside worker1 (you created in hostfiles as mapping name to IP) so the first time, it asks you about the password for hadoop user inside worker1.
+```
+ssh-copy-id hadoop@worker1
+```
+  
+</p>
+</details>  
 
