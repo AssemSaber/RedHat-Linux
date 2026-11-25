@@ -255,7 +255,15 @@ ls 2>&1 filename.txt          # Redirect standard output and error to a file
 command &> file                # Redirect standard output and error to a file
 grep pattern 2> /dev/null       # Discard standard output and error
 ```
+
 --------------------------------------------------------------------------------------------------
+## How to search in logs
+```
+docker logs trino | grep "ERROR"        # | (pipeline get only normal output and reject any error)
+docker logs trino 2>&1 | grep "ERROR"   # 2>&1 redirect the error with the output to get into the pipeline( | )
+command 2> /dev/null                    # any error goes to black hole
+docker logs trino 2>&1 | grep -E "Caused by|ERROR|Warn" # -E to all you use OR
+```
 
 </p>
 
